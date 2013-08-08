@@ -1,0 +1,7 @@
+.idea
+.idea_modules
+activator
+activator.bat
+activator*
+.DS_Store
+target
