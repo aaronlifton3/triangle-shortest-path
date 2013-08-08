@@ -2,7 +2,7 @@ import org.scalatest._
 import org.scalatest.FlatSpec
 
 class TriangleSpec extends FlatSpec {
-  var lastLine: Array[Triangle.Node] = null
+  var lastLine: List[Triangle.Node] = null
   val triangleFile: String = "test_triangle.txt"
   val triangle: Triangle.Node = Triangle.parseTriangle(triangleFile)
 
