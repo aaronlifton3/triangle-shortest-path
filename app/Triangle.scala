@@ -5,7 +5,7 @@ object Triangle {
   class Node(val value: Int) {
     var left: Option[Node] = _
     var right: Option[Node] = _
-    var inverseShortestPath: List[Int] = _
+    var longestPath: List[Int] = _
   }
 
   val triangleFile: String = "generated_triangle.txt"
@@ -29,24 +29,24 @@ object Triangle {
   val head: Node = parseTriangle(triangleFile)
 
   def traverse(node: Node): List[Int] = {
-    if (node.inverseShortestPath != null)
-      return node.inverseShortestPath
+    if (node.longestPath != null)
+      return node.longestPath
     (node.left, node.right) match {
       case (Some(l: Node), Some(r: Node)) => {
         val listLeft = traverse(l)
         val listRight = traverse(r)
-        node.inverseShortestPath = node.value :: (if (listLeft.sum > listRight.sum) listLeft else listRight)
-        node.inverseShortestPath
+        node.longestPath = node.value :: (if (listLeft.sum > listRight.sum) listLeft else listRight)
+        node.longestPath
       }
       case _ => List[Int](node.value)
     }
   }
 
   def main(args: Array[String]) = {
-    val inverseShortestPath = traverse(head)
-    val pathSum = inverseShortestPath.sum
+    val longestPath = traverse(head)
+    val pathSum = longestPath.sum
     println(s"Sum (most weighted path): $pathSum")
-    // inverseShortestPath.foreach(println)
+    // longestPath.foreach(println)
   }
 
 }
