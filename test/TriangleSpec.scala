@@ -20,7 +20,7 @@ class TriangleSpec extends FlatSpec {
 
   it should "have correct max path value" in {
     val traversedTriangle = Triangle.traverse(triangle)
-    val traversedSum = Triangle.sum(traversedTriangle)
+    val traversedSum = traversedTriangle.sum
     assert(traversedSum === 3)
   }
 
