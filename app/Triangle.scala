@@ -5,7 +5,7 @@ object Triangle {
   class Node(val value: Int) {
     var left: Option[Node] = _
     var right: Option[Node] = _
-    var longestPath: List[Int] = _
+    var longestPath: List[Int] = List[Int]()
   }
 
   val triangleFile: String = "generated_triangle.txt"
@@ -29,8 +29,7 @@ object Triangle {
   val head: Node = parseTriangle(triangleFile)
 
   def traverse(node: Node): List[Int] = {
-    if (node.longestPath != null)
-      return node.longestPath
+    if (node.longestPath.length > 0) return node.longestPath
     (node.left, node.right) match {
       case (Some(l: Node), Some(r: Node)) => {
         val listLeft = traverse(l)
