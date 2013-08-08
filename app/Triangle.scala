@@ -31,13 +31,14 @@ object Triangle {
   def traverse(node: Node): List[Int] = {
     if (node.inverseShortestPath != null)
       return node.inverseShortestPath
-    if (node.left == null && node.right == null) {
-      List[Int](node.value)
-    } else {
-      val listLeft = traverse(node.left.get)
-      val listRight = traverse(node.right.get)
-      node.inverseShortestPath = node.value :: (if (listLeft.sum > listRight.sum) listLeft else listRight)
-      node.inverseShortestPath
+    (node.left, node.right) match {
+      case (Some(l: Node), Some(r: Node)) => {
+        val listLeft = traverse(l)
+        val listRight = traverse(r)
+        node.inverseShortestPath = node.value :: (if (listLeft.sum > listRight.sum) listLeft else listRight)
+        node.inverseShortestPath
+      }
+      case _ => List[Int](node.value)
     }
   }
 
